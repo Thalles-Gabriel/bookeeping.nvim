@@ -1,1 +1,1 @@
-# notes.nvim
+# notekeeper.nvim
