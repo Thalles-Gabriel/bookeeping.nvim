@@ -12,8 +12,8 @@ function NotekeeperUI.create_window()
     -- Determine size and position 
     local width = 40
     local height = #buf_size + 2
-    local row = math.floor((vim.o.lines - height) / 2) -- Centro vertical
-    local col = math.floor((vim.o.columns - width) / 2) -- Centro horizontal
+    local row = math.floor((vim.o.lines - height) / 2) -- vertical center
+    local col = math.floor((vim.o.columns - width) / 2) -- horizontal center
 
     -- Create a floating window
     local _ = vim.api.nvim_open_win(buf, true, {
