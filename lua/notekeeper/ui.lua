@@ -15,8 +15,11 @@ function NotekeeperUI.create_window()
     local row = math.floor((vim.o.lines - height) / 2) -- vertical center
     local col = math.floor((vim.o.columns - width) / 2) -- horizontal center
 
+    -- Create the title
+    local title = "NoteKeeper"
+
     -- Create a floating window
-    local _ = vim.api.nvim_open_win(buf, true, {
+    local win = vim.api.nvim_open_win(buf, true, {
         relative = "editor",
         width = width,
         height = height,
@@ -25,9 +28,14 @@ function NotekeeperUI.create_window()
         style = "minimal",
         border = "single",
     })
+    vim.api.nvim_win_set_option(win, "number", true)
+
 
     -- Map <Esc> key to close
     vim.api.nvim_buf_set_keymap(buf, "n", "<Esc>", [[<Cmd>lua vim.api.nvim_win_close(0, true)<CR>]], { noremap = true, silent = true })
+
+    -- Map "dd" to delete note
+    vim.api.nvim_buf_set_keymap(buf, "n", "dd", "<Cmd>lua require('notekeeper.buffer').delete_note()<CR>", { noremap = true, silent = true })
 end
 
 return NotekeeperUI

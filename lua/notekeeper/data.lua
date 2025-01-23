@@ -42,4 +42,23 @@ function Data.load_notes()
     return decoded_file.notes or {}
 end
 
+---@param notes table
+function Data.save_notes(notes)
+    local path = get_project_path()
+    local content = vim.fn.json_encode({notes = notes})
+    vim.fn.writefile({content}, path)
+end
+
+---@param index number
+function Data.delete_notes(index)
+    local notes = Data.load_notes()
+    if index > 0 and index <= #notes then
+        table.remove(notes, index)
+        Data.save_notes(notes)
+        vim.notify("Note deleted!", vim.log.levels.INFO)
+    else
+        vim.notify("Invalid index for note deletion.", vim.log.levels.WARN)
+    end
+end
+
 return Data
