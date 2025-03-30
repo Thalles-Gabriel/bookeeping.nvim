@@ -20,12 +20,16 @@ function Buffer.setup_buffer()
 
 
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+    vim.api.nvim_buf_set_name(buf, "NoteKeeper")
+
 
     -- Buffer options
+    vim.api.nvim_buf_set_option(buf, "buftype", "acwrite")
     vim.api.nvim_buf_set_option(buf, "modifiable", true)
+    vim.api.nvim_buf_set_option(buf, "readonly", false)
     vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
     vim.api.nvim_buf_set_option(buf, "filetype", "notekeeper")
-    vim.api.nvim_buf_set_option(buf, "buftype", "acwrite")
+
 
 
     -- Save with ":w"
@@ -34,6 +38,8 @@ function Buffer.setup_buffer()
         callback = function()
             local content_lines = Buffer.get_contents(buf)
             Data.save_note({ lines = content_lines })
+            vim.api.nvim_buf_set_option(buf, "modified", false)
+
             print("Note saved!")
         end
     })

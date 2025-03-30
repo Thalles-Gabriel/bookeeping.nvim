@@ -31,7 +31,7 @@ function NotekeeperUI.create_window()
 
     -- Map's
     vim.api.nvim_buf_set_keymap(buf, "n", "<Esc>", [[<Cmd>lua vim.api.nvim_win_close(0, true)<CR>]], { noremap = true, silent = true })
-    vim.api.nvim_buf_set_keymap(buf, "n", "dd", "<Cmd>lua require('notekeeper.buffer').delete_note()<CR>", { noremap = true, silent = true })
+
 end
 
 return NotekeeperUI
