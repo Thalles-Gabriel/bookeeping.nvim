@@ -19,46 +19,37 @@ end
 local function get_project_path()
     ensure_data_path()
     local project_hash = hash()
-    local full_path = string.format("%s/%s.json", data_path, project_hash)
-
-    if vim.fn.filereadable(full_path) == 0 then
-        vim.fn.writefile({vim.fn.json_encode({notes = {}})}, full_path)
-    end
-
-    return full_path
+    return string.format("%s/%s.json", data_path, project_hash)
 end
 
--- Load notes from the JSON file
-function Data.load_notes()
+-- Load note from the JSON file
+function Data.load_note()
     local path = get_project_path()
+
+    if vim.fn.filereadable(path) == 0 then
+        return nil
+    end
 
     local content = vim.fn.readfile(path)
-    local success, decoded_file = pcall(vim.fn.json_decode, table.concat(content, "\n"))
+    local success, decoded = pcall(vim.fn.json_decode, table.concat(content, "\n"))
 
     if not success then
-        return {"Error loading JSON file"}
+        return {"Error loading JSON file", vim.log.levels.ERROR}
     end
 
-    return decoded_file.notes or {}
+    return decoded
 end
 
----@param notes table
-function Data.save_notes(notes)
+---@param note table
+function Data.save_note(note)
     local path = get_project_path()
-    local content = vim.fn.json_encode({notes = notes})
-    vim.fn.writefile({content}, path)
+    local content = vim.fn.json_encode(note or { lines = {} })
+    vim.fn.writefile(vim.split(content, "\n"), path)
 end
 
----@param index number
-function Data.delete_notes(index)
-    local notes = Data.load_notes()
-    if index > 0 and index <= #notes then
-        table.remove(notes, index)
-        Data.save_notes(notes)
-        vim.notify("Note deleted!", vim.log.levels.INFO)
-    else
-        vim.notify("Invalid index for note deletion.", vim.log.levels.WARN)
-    end
+function Data.delete_note()
+    Data.save_note({ lines = {} })
+    vim.notify("Nota deleted!", vim.log.levels.INFO)
 end
 
 return Data
