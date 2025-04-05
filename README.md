@@ -4,10 +4,14 @@
 </div>
 
 <div align="center"> 
-A minimalist Neovim plugin to keep simple notes per project - right inside your editor.
+A minimalist Neovim plugin to keep simple notes per project - right inside your editor
 </div>
 
 ---
+
+## Preview
+
+![NoteKeeper preview](images/notekeeper.gif)
 
 
 ## Installation
@@ -22,3 +26,12 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
   end
 }
 ```
+
+## Usage 
+
+After installation:
+- Press `<leader>n` to open the NoteKeeper UI or run `:Notekeeper` from the command line
+
+
+
+
