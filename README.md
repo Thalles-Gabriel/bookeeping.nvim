@@ -2,7 +2,8 @@
 
 ## Keeping dates of each notes for better organization
 
-## Fork from [Notekeeping](https://github.com/ricarim/notekeeper.nvim/)
+Fork from [Notekeeping](https://github.com/ricarim/notekeeper.nvim/)
+
 ---
 
 ## Installation
