@@ -1,18 +1,9 @@
+# A minimalist Neovim plugin to keep simple notes per project 
 
-<div align="center">
-  <img src="images/logo2.png" alt="NoteKeeper logo" width="300"/>
-</div>
+## Keeping dates of each notes for better organization
 
-<div align="center"> 
-A minimalist Neovim plugin to keep simple notes per project - right inside your editor
-</div>
-
+## Fork from [Notekeeping](https://github.com/ricarim/notekeeper.nvim/)
 ---
-
-## Preview
-
-![NoteKeeper preview](images/notekeeper.gif)
-
 
 ## Installation
 
@@ -20,17 +11,15 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-  "ricarim/notekeeper.nvim",
-  config = function()
-    require("notekeeper").setup()
-  end
+  "Thalles-Gabriel/bookeeping.nvim",
+  opts = {}
 }
 ```
 
 ## Usage 
 
 After installation:
-- Press `<leader>n` to open the NoteKeeper UI or run `:Notekeeper` from the command line
+- Press `<leader>b` to open the Bookeping UI or run `:Bookeping` from the command line
 
 
 
